@@ -10,6 +10,9 @@ namespace Mission_6_Assignment.Models
             public int MovieId { get; set; }
 
             [Required]
+            public string? Category { get; set; }
+
+            [Required]
             public string? Title { get; set; }
 
             [Required]
@@ -29,5 +32,3 @@ namespace Mission_6_Assignment.Models
             public string? Notes { get; set; }
         }
     }
-}
-}

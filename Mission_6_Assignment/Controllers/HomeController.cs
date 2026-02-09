@@ -16,7 +16,17 @@ namespace Mission_6_Assignment.Controllers
             return View();
         }
 
-        public IActionResult 
+        [HttpGet]
+        public IActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddMovie(Movie response)
+        {
+            return View("Confirmation");
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
