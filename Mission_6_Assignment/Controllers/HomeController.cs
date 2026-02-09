@@ -11,10 +11,12 @@ namespace Mission_6_Assignment.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult GetToKnowJoel()
         {
             return View();
         }
+
+        public IActionResult 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
