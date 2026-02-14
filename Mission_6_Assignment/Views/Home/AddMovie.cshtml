@@ -2,36 +2,45 @@
 
 <h1>Add Movie to Database</h1>
 
-<form>
+<form asp-action="AddMovie" asp-controller="Home" method="post">
     <label asp-for="Category">Category</label>
     <input asp-for="Category" />
+    <span asp-validation-for="Category" class="text-danger"></span>
     <br />
     <label asp-for="Title">Title</label>
     <input asp-for="Title" />
+    <span asp-validation-for="Title" class="text-danger"></span>
     <br />
     <label asp-for="Year">Year</label>
     <input asp-for="Year" />
+    <span asp-validation-for="Year" class="text-danger"></span>
     <br />
     <label asp-for="Director">Director</label>
     <input asp-for="Director" />
+    <span asp-validation-for="Director" class="text-danger"></span>
     <br />
     <label asp-for="Rating">Rating</label>
     <select asp-for="Rating">
+        <option value="">-- Select Rating --</option>
         <option>G</option>
         <option>PG</option>
         <option>PG-13</option>
         <option>R</option>
         <option>NC-17</option>
     </select>
+    <span asp-validation-for="Rating" class="text-danger"></span>
     <br />
     <label asp-for="Edited">Edited</label>
     <input asp-for="Edited" type="checkbox" />
+    <span asp-validation-for="Edited" class="text-danger"></span>
     <br />
     <label asp-for="LentTo">Lent To</label>
     <input asp-for="LentTo" />
+    <span asp-validation-for="LentTo" class="text-danger"></span>
     <br />
     <label asp-for="Notes">Notes</label>
     <input asp-for="Notes" />
-    
+    <span asp-validation-for="Notes" class="text-danger"></span>
+
     <button type="submit">Add Movie</button>
 </form>

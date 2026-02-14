@@ -6,6 +6,13 @@ namespace Mission_6_Assignment.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MovieDatabaseContext _context;
+
+        public HomeController(MovieDatabaseContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -25,7 +32,15 @@ namespace Mission_6_Assignment.Controllers
         [HttpPost]
         public IActionResult AddMovie(Movie response)
         {
-            return View("Confirmation");
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Add(response);
+                _context.SaveChanges();
+
+                return View("Confirmation", response);
+            }
+
+            return View(response);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
