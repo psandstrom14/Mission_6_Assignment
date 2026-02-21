@@ -3,9 +3,11 @@
 <h1>Add Movie to Database</h1>
 
 <form asp-action="AddMovie" asp-controller="Home" method="post">
-    <label asp-for="Category">Category</label>
-    <input asp-for="Category" />
-    <span asp-validation-for="Category" class="text-danger"></span>
+    <label asp-for="CategoryId">Category</label>
+    <select asp-for="CategoryId" asp-items="ViewBag.Categories">
+        <option value="">-- Select Category --</option>
+    </select>
+    <span asp-validation-for="CategoryId" class="text-danger"></span>
     <br />
     <label asp-for="Title">Title</label>
     <input asp-for="Title" />
@@ -33,6 +35,11 @@
     <label asp-for="Edited">Edited</label>
     <input asp-for="Edited" type="checkbox" />
     <span asp-validation-for="Edited" class="text-danger"></span>
+    <br />
+    <label asp-for="CopiedToPlex">Copied to Plex</label>
+    <input asp-for="CopiedToPlex" type="checkbox" />
+    <span asp-validation-for="CopiedToPlex" class="text-danger"></span>
+    <br />
     <br />
     <label asp-for="LentTo">Lent To</label>
     <input asp-for="LentTo" />

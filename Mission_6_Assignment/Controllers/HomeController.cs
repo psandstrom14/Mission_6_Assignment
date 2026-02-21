@@ -1,6 +1,9 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Mission_6_Assignment.Models;
+using System.Diagnostics;
+
 
 namespace Mission_6_Assignment.Controllers
 {
@@ -15,7 +18,9 @@ namespace Mission_6_Assignment.Controllers
 
         public IActionResult Index()
         {
-            var movies = _context.Movies.ToList();
+            var movies = _context.Movies
+                .Include(x => x.Category)
+                .ToList();
             return View(movies);
         }
 
@@ -27,6 +32,7 @@ namespace Mission_6_Assignment.Controllers
         [HttpGet]
         public IActionResult AddMovie()
         {
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
             return View();
         }
 
@@ -66,8 +72,10 @@ namespace Mission_6_Assignment.Controllers
         public IActionResult Delete(int id)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
-            _context.Movies.Remove(movie);
-            _context.SaveChanges();
+            if (movie != null)
+            {
+                _context.Movies.Remove(movie); _context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
 

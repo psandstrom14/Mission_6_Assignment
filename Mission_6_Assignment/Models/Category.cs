@@ -1,6 +1,11 @@
-﻿namespace Mission_6_Assignment.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Mission_6_Assignment.Models
 {
     public class Category
     {
+        [Key]
+        public int CategoryId { get; set; }
+        public string? CategoryName { get; set; }
     }
 }
