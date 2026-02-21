@@ -15,7 +15,8 @@ namespace Mission_6_Assignment.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var movies = _context.Movies.ToList();
+            return View(movies);
         }
 
         public IActionResult GetToKnowJoel()
@@ -41,6 +42,33 @@ namespace Mission_6_Assignment.Controllers
             }
 
             return View(response);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Movie response)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Movies.Update(response);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(response);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
+            _context.Movies.Remove(movie);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
