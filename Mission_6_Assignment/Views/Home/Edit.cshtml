@@ -1,16 +1,19 @@
-﻿@model Movie
+﻿@model Mission_6_Assignment.Models.Movie
 
 @{
-    ViewData["Title"] = "Add Movie";
+    ViewData["Title"] = "Edit Movie";
 }
 
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-dark text-white">
-            <h2 class="mb-0">Add Movie to Database</h2>
+            <h2 class="mb-0">Edit Movie</h2>
         </div>
         <div class="card-body">
-            <form asp-action="AddMovie" asp-controller="Home" method="post">
+            <form asp-action="Edit" asp-controller="Home" method="post">
+
+                @* Hidden field to keep track of which movie we're editing *@
+                <input type="hidden" asp-for="MovieId" />
 
                 <div class="mb-3">
                     <label asp-for="CategoryId" class="form-label">Category</label>
@@ -45,7 +48,10 @@
                         <option>PG</option>
                         <option>PG-13</option>
                         <option>R</option>
+                        <option>NR</option>
+                        <option>UR</option>
                         <option>NC-17</option>
+                        <option>TV-14</option>
                     </select>
                 </div>
 
@@ -69,7 +75,7 @@
                     <input asp-for="Notes" class="form-control" />
                 </div>
 
-                <button type="submit" class="btn btn-primary">Add Movie</button>
+                <button type="submit" class="btn btn-success">Save Changes</button>
                 <a asp-action="Index" asp-controller="Home" class="btn btn-secondary">Cancel</a>
 
             </form>

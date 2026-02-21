@@ -46,13 +46,14 @@ namespace Mission_6_Assignment.Controllers
 
                 return View("Confirmation", response);
             }
-
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
             return View(response);
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewBag.Categories = new SelectList(_context.Categories.ToList(), "CategoryId", "CategoryName");
             var movie = _context.Movies.FirstOrDefault(x => x.MovieId == id);
             return View(movie);
         }
